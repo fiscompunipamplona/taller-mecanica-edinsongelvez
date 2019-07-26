@@ -18,7 +18,7 @@ N = 75000
 h = (t_f - t_0) / N
 
 
-# Utilice el método de Runge-Kutta de cuarto orden para resolver el sistema
+# Método de Runge-Kutta de cuarto orden para resolver el sistema
 def f(r):
     theta1 = r[0]
     omega1 = r[1]
@@ -62,7 +62,7 @@ for t in tpoints:
 # ylabel('energy (J)')
 # show()
 
-# Hacer animacion
+# animacion
 rod1 = cylinder(pos=vector(0, 0, 0), axis=vector(l * cos(theta1_0 - pi / 2), l * sin(theta1_0 - pi / 2), 0), radius=l/40)
 bob1 = sphere(pos=vector(l * cos(theta1_0 - pi / 2), l * sin(theta1_0 - pi / 2), 0), radius=l/10)
 rod2 = cylinder(pos=vector(l * cos(theta1_0 - pi / 2), l * sin(theta1_0 - pi / 2), 0), \
@@ -82,3 +82,5 @@ for i in range(N):
 # Se observa el movimiento de los dos péndulos, y la representación gráfica del ángulo de desviación de cada péndulo 
 # θ1 y θ2 en función del tiempo t. Se puede observar que la energía total que permanece constante durante el movimiento 
 # de los péndulos.
+
+
