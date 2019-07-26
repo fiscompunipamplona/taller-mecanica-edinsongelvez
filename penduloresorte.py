@@ -33,19 +33,19 @@ plt.gca().set_aspect('equal')
 plt.gca().grid()
 
 #origin = plt.plot([ 0.0 ], [ 0.0 ], 'ro')
-spring, = plt.plot([], [], 'b-', linewidth = 2)
-mass, = plt.plot([], [], 'ro', markersize = 10)
+resorte, = plt.plot([], [], 'b-', linewidth = 2)
+masa, = plt.plot([], [], 'ro', markersize = 10)
 
-frames = []
+marco = []
 
 # Esta función dibuja el sistema dados los valores de la generalizada.
 # coordenadas.
-def draw(n):
-  spr_x = (l + frames[n][2]) * np.sin(frames[n][0])
-  spr_y = -1.0 * (l + frames[n][2]) * np.cos(frames[n][0])
-  spring.set_data([ 0.0, spr_x ], [ 0.0, spr_y ])
-  mass.set_data([ spr_x ], [ spr_y ])
-  return spring, mass
+def trazo(n):
+  spr_x = (l + marco[n][2]) * np.sin(marco[n][0])
+  spr_y = -1.0 * (l + marco[n][2]) * np.cos(marco[n][0])
+  resorte.set_data([ 0.0, spr_x ], [ 0.0, spr_y ])
+  masa.set_data([ spr_x ], [ spr_y ])
+  return resorte, masa
 
 def deriv(t, y):
   dth = y[1]
@@ -63,12 +63,12 @@ solver.set_initial_value([ theta0, omega0, x0, v0 ], t0)
 
 while solver.successful() and solver.t < t_max:
   solver.integrate(solver.t + dt)
-  frames.append(solver.y)
+  marco.append(solver.y)
 
-ani = anim.FuncAnimation(plt.gcf(), draw, np.arange(0, len(frames)),
+ani = anim.FuncAnimation(plt.gcf(), trazo, np.arange(0, len(marco)),
   interval = 1e3 * dt)
 
-#ani.save('spring_pendulum.mp4', fps = 30)
+
 plt.show()
 
 # Se observa el movimiento de la partícula, y su trayectoria, se sitúa en la posición del extremo libre del muelle
@@ -76,7 +76,6 @@ plt.show()
 # situado en la posición de equilibrio de la partícula, ye=mg/k por debajo del origen, o Le=L0+mg/k por debajo del
 # punto de sujeción.
 
-# En este caso se resuelve el sistema de dos ecuaciones diferencial de segundo orden
-#por el método de Runge-Kutta. Este procedimiento numérico produce, en general, buenos resultados,
+# Se puede observar también en general, buenos resultados,
 #que podemos confirmar observando que la energía se mantiene constante.
 
